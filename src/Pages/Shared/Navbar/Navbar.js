@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
 import logo from "../../../assets/icons/logo2 (4).png";
 
 const Navbar = () => {
+     
     
   return (
-    <div className="navbar bg-base-100 lg:container-fluid mx-auto px-4  shadow-lg font-bold">
+    <div className="navbar bg-base-100 lg:container-fluid mx-auto px-4 sticky top-0 z-50  shadow-lg font-bold">
       <div className="navbar-start ">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -29,10 +30,10 @@ const Navbar = () => {
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
-              <Link>Home</Link>
+              <Link to="/">Home</Link>
             </li>
             <li tabIndex={0}>
-              <Link className="justify-between">
+              <Link to="/categories" className="justify-between">
                 Categories
                 <svg
                   className="fill-current"
@@ -44,34 +45,37 @@ const Navbar = () => {
                   <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
                 </svg>
               </Link>
-              <ul className="p-2">
-                <li>
+              <ul className="p-2 shadow-lg">
+                <li className="  bg-white">
                   <Link>University</Link>
                 </li>
-                <li>
+                <li className="  bg-white">
                   <Link>Engineering</Link>
                 </li>
-                <li>
+                <li className=" bg-white">
                   <Link>Medical</Link>
                 </li>
               </ul>
             </li>
             <li>
-              <Link>Blogs</Link>
+              <Link to="/blogs">Blogs</Link>
             </li>
           </ul>
         </div>
         <div className="w-full flex flex-wrap items-center justify-between lg:px-6">
-          <div className=" ">
+          <div className=" items-center">
             <Link
               className="flex items-center w-10 text-gray-900 hover:text-gray-900 focus:text-gray-900 mt-2 ml:0 lg:mt-0 "
-              href="#"
+              to="/"
             >
               <img src={logo} alt="" loading="lazy" />
-              <Link className=" normal-case text-3xl text-primary  ">
-                <span className="text-4xl">B</span>ooks
-                <span className="text-black">ify</span>
-              </Link>
+              <div className="flex flex-col">
+                <Link className=" normal-case text-3xl text-primary  ">
+                  <span className="text-5xl">B</span>ooks
+                  <span className="text-black">ify</span>
+                </Link>
+                <small className="text-orange-600 px-4">Books For You </small>
+              </div>
             </Link>
           </div>
         </div>
@@ -82,7 +86,7 @@ const Navbar = () => {
             <Link>Home</Link>
           </li>
           <li tabIndex={0}>
-            <Link>
+            <Link to="/categories">
               Categories
               <svg
                 className="fill-current"
@@ -94,25 +98,28 @@ const Navbar = () => {
                 <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
               </svg>
             </Link>
-            <ul className="p-2">
-              <li>
+            <ul className="p-2 shadow-lg   ">
+              <li className="  bg-white">
                 <Link>University</Link>
               </li>
-              <li>
+              <li className="  bg-white">
                 <Link>Engineering</Link>
               </li>
-              <li>
+              <li className=" bg-white">
                 <Link>Medical</Link>
               </li>
             </ul>
           </li>
           <li>
-            <Link>Blogs</Link>
+            <Link to="/blogs">Blogs</Link>
           </li>
         </ul>
       </div>
-      <div className="navbar-end   ">
-        <Link to="/login" className="btn btn-sm btn-primary font-thin mr-2">
+      <div className="navbar-end   px-4">
+        <Link
+          to="/login"
+          className="btn btn-md border-0 bg-gradient-to-r from-blue-500 to-slate-600 text-white font-medium mr-2"
+        >
           Login
         </Link>
         <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
