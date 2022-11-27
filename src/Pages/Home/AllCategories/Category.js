@@ -4,7 +4,7 @@ const Category = ({ category }) => {
   const { _id, name, img } = category;
   return (
     <div
-      className="hero card   h-56 mb-5 mx-auto shadow-lg hover:scale-110 transition duration-300 ease-in-out"
+      className="hero card   h-56  mx-auto  hover:scale-110 transition duration-300 ease-in-out"
       style={{
         backgroundImage: `url(${img})`,
       }}

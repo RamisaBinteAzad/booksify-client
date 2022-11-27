@@ -11,7 +11,7 @@ const AllCategories = () => {
       });
 
   return (
-    <div className="mt-24 container-fluid   px-9">
+    <div className="mt-24 container-fluid   px-4">
       <div className="text-center">
         <h2 className="text-5xl font-semibold text-primary ">
           Categories
@@ -22,7 +22,7 @@ const AllCategories = () => {
           Second Hand Products
         </p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 shadow-lg" >
+      <div className="grid grid-cols-1 md:grid-cols-2 mt-16 mx-auto container lg:grid-cols-3 gap-6  " >
         {categories.map((category) => (
           <Category key={category._id} category={category}></Category>
         ))}

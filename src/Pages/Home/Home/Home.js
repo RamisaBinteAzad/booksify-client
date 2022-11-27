@@ -1,15 +1,17 @@
 import React from 'react';
+import Footer from '../../Shared/Footer/Footer';
 import AllCategories from '../AllCategories/AllCategories';
 import Banner from '../Banner/Banner';
 import Features from '../Features/Features';
 
 const Home = () => {
     return (
-        <div>
-            <Banner></Banner>
-            <Features></Features>
-            <AllCategories></AllCategories>
-        </div>
+      <div>
+        <Banner></Banner>
+
+        <AllCategories></AllCategories>
+        <Features></Features>
+      </div>
     );
 };
 
