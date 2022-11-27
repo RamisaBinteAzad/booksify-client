@@ -11,6 +11,15 @@ module.exports = {
           accent: "#3A4256",
 
           neutral: "#3D4451",
+          success: "#006400",
+          // green
+
+          info: "#FFBD86",
+          // cherry
+
+          error: "#FD4755",
+          // Red 
+          
 
           "base-100": "#FFFFFF",
         },

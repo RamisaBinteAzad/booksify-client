@@ -25,15 +25,16 @@ const BannerItems = ({ slide }) => {
                 Used Books
               </h1>
 
-              <p className="mb-6 text-white w-96 ">
-                Booksify is the fastest online marketplace conneting Buyers And
-                Sellers. Start buying and selling today! Make shopping{" "}
+              <p className="mb-6 text-white w-96  mx-6 flex-wrap">
+                Booksify is the fastest online marketplace <br />
+                conneting Buyers And Sellers.Start buying
+                <br /> buying and selling today! Make shopping{" "}
                 <span className="text-secondary font-bold">
                   SIMPLE, SECURE and FAST.{" "}
                 </span>
-                Discover what you need and sell in our powerful platform.
+                Discover what <br /> you need and sell in our powerful platform.
               </p>
-              <button className="btn btn-md border-0 text-white font-thin mr-4 bg-gradient-to-r from-blue-500 to-slate-600">
+              <button className="btn btn-md border-0 text-white font-thin mr-4 bg-gradient-to-r from-blue-500 to-slate-600 w-36">
                 Sign Up
               </button>
               <button className="btn btn-outline text-white border font-thin border-white">

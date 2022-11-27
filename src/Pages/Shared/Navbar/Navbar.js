@@ -6,7 +6,7 @@ const Navbar = () => {
      
     
   return (
-    <div className="navbar bg-base-100 lg:container-fluid mx-auto px-4 sticky top-0 z-50  shadow-lg font-bold">
+    <div className="navbar bg-base-100 lg:container-fluid mx-auto px-4  sticky top-0 z-50  shadow-lg font-bold">
       <div className="navbar-start ">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -27,7 +27,7 @@ const Navbar = () => {
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+            className="text-3xl menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
               <Link to="/">Home</Link>
@@ -69,7 +69,7 @@ const Navbar = () => {
               to="/"
             >
               <img src={logo} alt="" loading="lazy" />
-              <div className="flex flex-col">
+              <div className="flex flex-col ">
                 <Link className=" normal-case text-3xl text-primary  ">
                   <span className="text-5xl">B</span>ooks
                   <span className="text-black">ify</span>
