@@ -39,7 +39,7 @@ const bannerData = [
   },
   
 ]; 
- console.log(bannerData);
+//  console.log(bannerData);
 
 const Banner = () => {
   return (

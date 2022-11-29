@@ -19,7 +19,7 @@ const Footer = () => {
   return (
     <div>
       {" "}
-      <footer className="footer mt-11 p-10 bg-base-200   ">
+      <footer className="footer   p-10 bg-base-200   ">
         <div className="">
           <div className="flex  ">
             <img className="" src={logo} alt="" />
@@ -34,9 +34,7 @@ const Footer = () => {
             Booksify is the fastest online marketplace. Start <br /> buying
             things instantly with our simple navigation <br /> and you can sell
             your books to the customers
-            <br /> according to their location. With multiple payment <br />
-            methods, secure transaction options and fast <br />
-            delivery, buying online has never been <br /> easier.
+            <br /> according to their location.  
           </p>
         </div>
         <div>

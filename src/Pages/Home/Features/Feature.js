@@ -2,16 +2,11 @@ import React from "react";
 
 const Feature = ({ feature }) => {
   const { _id, featureName, icon, bgClass } = feature;
-  console.log(feature);
+  // console.log(feature);
   return (
     // <div className={`card p-6 static shadow-xl ${bgClass}`}>
     <div>
-      {/* <figure>
-          <img src={icon} alt="Movie" />
-        </figure>
-        <div className="card-body">
-          <h2 className="card-title text-lg  ">{featureName}</h2>
-        </div> */}
+      
       <div
         className={` ${bgClass} card   lg:w-[174px] mx-auto w-48   h-56 static rounded-lg shadow-lg`}
       >

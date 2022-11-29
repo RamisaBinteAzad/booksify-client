@@ -1,4 +1,5 @@
 import React from "react";
+import { FaSignInAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const BannerItems = ({ slide }) => {
@@ -35,7 +36,8 @@ const BannerItems = ({ slide }) => {
               Discover what <br /> you need and sell in our powerful platform.
             </p>
             <button className="btn btn-md border-0 text-white font-thin mr-4 bg-gradient-to-r from-blue-500 to-slate-600 w-36">
-              Sign Up
+              <Link to='/signup'>Sign Up</Link>
+              <FaSignInAlt className="ml-3"></FaSignInAlt>
             </button>
             <button className="btn btn-outline text-white border font-thin border-white">
               Learn More

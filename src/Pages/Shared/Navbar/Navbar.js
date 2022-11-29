@@ -1,8 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
+import { FaSignInAlt, FaUser } from "react-icons/fa";
+ 
 import { Link } from "react-router-dom";
 import logo from "../../../assets/icons/logo2 (4).png";
+import { AuthContext } from "../../../contexts/AuthProvider";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
+  // console.log(user);
+   
+  
+   
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((err) => console.error(err));
+  };
+
      
     
   return (
@@ -33,7 +47,7 @@ const Navbar = () => {
               <Link to="/">Home</Link>
             </li>
             <li tabIndex={0}>
-              <Link to="/categories" className="justify-between">
+              <Link to="#" className="justify-between">
                 Categories
                 <svg
                   className="fill-current"
@@ -60,6 +74,13 @@ const Navbar = () => {
             <li>
               <Link to="/blogs">Blogs</Link>
             </li>
+            {user?.uid ? (
+              <li>
+                <Link to="/dashboard">Dashboard</Link>
+              </li>
+            ) : (
+              ""
+            )}
           </ul>
         </div>
         <div className="w-full flex flex-wrap items-center justify-between lg:px-6">
@@ -83,10 +104,10 @@ const Navbar = () => {
       <div className="navbar-center hidden  lg:flex">
         <ul className="menu menu-horizontal p-0">
           <li className="text-primary">
-            <Link to='/'>Home</Link>
+            <Link to="/">Home</Link>
           </li>
           <li tabIndex={0}>
-            <Link to="/categories">
+            <Link to="#">
               Categories
               <svg
                 className="fill-current"
@@ -113,18 +134,99 @@ const Navbar = () => {
           <li>
             <Link to="/blogs">Blogs</Link>
           </li>
+          {user?.uid ? (
+            <li>
+              <Link to="/dashboard">Dashboard</Link>
+            </li>
+          ) : (
+            ""
+          )}
         </ul>
       </div>
       <div className="navbar-end   px-4">
-        <Link
+        {user?.uid ? (
+          <Link
+            to="/login"
+            className="btn invisible lg:visible md:visible btn-md border-0 bg-orange-600   text-white font-medium mr-2 "
+          >
+            <button onClick={handleLogOut}>Sign Out</button>
+
+            <FaSignInAlt className="ml-3"></FaSignInAlt>
+          </Link>
+        ) : (
+          <Link
+            to="/login"
+            className="btn btn-md border-0 bg-gradient-to-r lg:visible from-blue-500 to-slate-600 text-white font-medium mr-2"
+          >
+            Login
+            <FaSignInAlt className="ml-3"></FaSignInAlt>
+          </Link>
+        )}
+        {user ? (
+          <div className="dropdown dropdown-end  block md:hidden lg:hidden">
+            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+              <div className="w-10 rounded-full">
+                {user?.photoURL ? (
+                  <img title={user?.displayName} src={user.photoURL} alt="" />
+                ) : (
+                  <img src="" alt="" />
+                )}
+              </div>
+            </label>
+            <ul
+              tabIndex={0}
+              className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+            >
+              <li>
+                <Link className="justify-between">
+                  Profile
+                  <span className="badge">New</span>
+                </Link>
+              </li>
+              <li>
+                <Link>Settings</Link>
+              </li>
+              {user?.uid ? (
+                <Link
+                  to="/login"
+                  className="btn btn-md border-0 bg-orange-600   text-white font-medium mr-2 "
+                >
+                  <button onClick={handleLogOut}>Sign Out</button>
+
+                  <FaSignInAlt className="ml-3"></FaSignInAlt>
+                </Link>
+              ) : (
+                <Link
+                  to="/login"
+                  className="btn btn-md border-0 bg-gradient-to-r from-blue-500 to-slate-600 text-white font-medium mr-2"
+                >
+                  <button>
+                    Login
+                    <FaSignInAlt className="ml-3"></FaSignInAlt>
+                  </button>
+                </Link>
+              )}
+            </ul>
+          </div>
+        ) : (
+          ""
+        )}
+
+        {/* <Link
           to="/login"
           className="btn btn-md border-0 bg-gradient-to-r from-blue-500 to-slate-600 text-white font-medium mr-2"
         >
           Login
-        </Link>
-        <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-          <div className="w-10 rounded-full">
-            <img src="https://placeimg.com/80/80/people" alt="" />
+          <FaSignInAlt className="ml-3"></FaSignInAlt>
+        </Link> */}
+
+        <label tabIndex={0} className="  hidden lg:block  md:block   avatar">
+          <div className="w-10  rounded-full">
+            {user?.photoURL ? (
+              <img title={user?.displayName} src={user?.photoURL} alt="" />
+            ) : (
+              <FaUser className="w-24"></FaUser>
+            )}
           </div>
         </label>
       </div>

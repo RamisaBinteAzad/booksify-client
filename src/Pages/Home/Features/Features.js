@@ -81,7 +81,7 @@ const Features = () => {
     
 
 </div> */}
-      <div className="grid    mt-14 gap-6 grid-cols-2 container mx-auto  md:grid-cols-3 lg:grid-cols-6">
+      <div className="grid  mb-12  mt-14 gap-6 grid-cols-2 container mx-auto  md:grid-cols-3 lg:grid-cols-6">
         {features.map((feature) => (
           <Feature key={feature._id} feature={feature}></Feature>
         ))}

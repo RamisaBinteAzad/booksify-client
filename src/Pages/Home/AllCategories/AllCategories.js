@@ -1,14 +1,29 @@
+import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
+import Loading from "../../Shared/Loading/Loading";
 import Category from "./Category";
 
 
 const AllCategories = () => {
-    const [categories, setCategories] = useState([]);
-      useEffect(() => {
-        fetch("categories.json")
-          .then((res) => res.json())
-          .then((data) => setCategories(data));
-      });
+    // const [categories, setCategories] = useState([]);
+    //   useEffect(() => {
+    //     fetch("categories.json")
+    //       .then((res) => res.json())
+    //       .then((data) => setCategories(data));
+    //   });
+    const { data: categories = [],isLoading } = useQuery({
+      queryKey: ["categories"],
+      queryFn: async () => {
+        const res = await fetch("http://localhost:5000/category");
+        const data = await res.json();
+        // console.log('data:',data)
+        return data;
+      },
+    });
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
+
 
   return (
     <div className="mt-24 container-fluid   px-4">
