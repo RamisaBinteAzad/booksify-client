@@ -7,6 +7,7 @@ import { FaEnvelope, FaImage, FaLock, FaUser } from "react-icons/fa";
 import { AuthContext } from "../../contexts/AuthProvider";
 import toast from "react-hot-toast";
 import Loading from "../Shared/Loading/Loading";
+import useToken from "../../hooks/useToken";
 // import { AuthContext } from "../../contexts/AuthProvider";
 
 const SignUp = () => {
@@ -15,6 +16,15 @@ const SignUp = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
+   const { createUser, updateUser } = useContext(AuthContext);
+   const [signUpError, setSignUpError] = useState("");
+   const [createdUserEmail, setCreatedUserEmail] = useState("");
+   // user er creation jokhon puropuri sesh hoye jabe tokhon setCreatedUserEmail korbo
+   const [token] = useToken(createdUserEmail);
+   const navigate = useNavigate();
+   if (token) {
+     navigate("/");
+   }
   const { user, loading } = useContext(AuthContext);
   const { googleSignIn } = useContext(AuthContext);
   const handleGoogleSignIn = () => {
@@ -22,7 +32,7 @@ const SignUp = () => {
       .then((result) => {
         const user = result.user;
          console.log("user", user);
-       
+       toast.success("Sign Up Successfully");
         const userInfo = {
           displayName: user.displayName,
           photoURL: user.photoURL,
@@ -50,9 +60,8 @@ const SignUp = () => {
       });
   };
 
-  const { createUser, updateUser } = useContext(AuthContext);
-  const [signUpError, setSignUpError] = useState("");
-  const navigate = useNavigate();
+ 
+
   const handleSignUp = (data) => {
     // console.log(data);
     setSignUpError("");
@@ -60,6 +69,7 @@ const SignUp = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        toast.success("Sign Up Successfully");
       
         // console.log(user.email ,user.password);
        
@@ -95,10 +105,11 @@ const SignUp = () => {
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
+          // getUserToken(email); 
 
           if (data.acknowledged) {
-              toast.success("Sign Up Successfully");
-             navigate("/");
+              
+             setCreatedUserEmail(email);
            
           } else {
          
@@ -112,6 +123,19 @@ const SignUp = () => {
     
   
   };
+    // const getUserToken = (email) => {
+    //   fetch(`http://localhost:5000/jwt?email=${email}`)
+    //     .then((res) => res.json())
+    //     .then((data) => {
+    //       console.log(data);
+    //       if (data.accessToken) {
+             
+    //         localStorage.setItem("accessToken", data.accessToken);
+    //         navigate("/");
+    //       }
+    //     });
+    // };
+
 if (loading) {
    return <Loading></Loading>;
 }
@@ -222,11 +246,12 @@ if (loading) {
                       Url
                     </label>
                     <input
-                      {...register("photo")}
+                      {...register("photo" )}
                       type="text"
                       placeholder="Upload Profile Pic"
                       className="block w-full rounded-md border border-gray-300 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary py-1 px-1.5 text-gray-500"
                     />
+                    
                   </div>
                   <div className="form-control w-full max-w-xs mb-3">
                     <label className="label">

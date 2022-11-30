@@ -7,14 +7,28 @@ import login from "../../assets/images/login.jpg";
 import bglogin from "../../assets/images/bg.jpg";
 import { AuthContext } from "../../contexts/AuthProvider";
 import toast from "react-hot-toast";
+import useToken from "../../hooks/useToken";
  
 
 const Login = () => {
+       const { signIn } = useContext(AuthContext);
+       // Error
+       const [logInError, setLogInError] = useState("");
+       const [loginUserEmail, setLoginUserEmail] = useState("");
+       const [token] = useToken(loginUserEmail);
+       const location = useLocation();
+  const navigate = useNavigate();
+   const from = location.state?.from?.pathname || "/";
+   if (token) {
+     navigate(from, { replace: true });
+   }
   const { googleSignIn } = useContext(AuthContext);
   const handleGoogleSignIn = () => {
     googleSignIn()
       .then((result) => {
         const user = result.user;
+        console.log(user);
+          
         toast.success("Login Successfully");
          navigate(from, { replace: true });
          
@@ -27,12 +41,9 @@ const Login = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
-     const { signIn } = useContext(AuthContext);
-     // Error
-  const [logInError, setLogInError] = useState("");
-   const location = useLocation();
-   const navigate = useNavigate();
-const from = location.state?.from?.pathname || "/";
+
+ 
+
      const handleLogin = (data) => {
        // console.log(data.email, data.password);
        setLogInError("");
@@ -41,7 +52,8 @@ const from = location.state?.from?.pathname || "/";
            const user = result.user;
                  toast.success("Login Successfully");
            console.log(user);
-           navigate(from, { replace: true });
+            setLoginUserEmail(data.email);
+         
          })
          .catch((error) => {
           //  console.log(error.message);
