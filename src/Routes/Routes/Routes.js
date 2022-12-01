@@ -6,6 +6,7 @@ import Dashboard from "../../Pages/Dashboard/Dashboard/Dashboard";
 import MyProducts from "../../Pages/Dashboard/MyProducts/MyProducts";
 import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/Login/Login";
+import ProductDetails from "../../Pages/ProductDetails/ProductDetails";
 import SignUp from "../../Pages/SignUp/SignUp";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import SellerRoute from "../SellerRoute/SellerRoute";
@@ -20,6 +21,18 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
+      },
+    
+
+      {
+        path: "/category/:id",
+        element: (
+          <PrivateRoute>
+            <ProductDetails></ProductDetails>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/products/${params.id}`),
       },
       {
         path: "/login",
@@ -43,7 +56,6 @@ const router = createBrowserRouter([
     ),
     // errorElement: <DisplayError></DisplayError>,
     children: [
-      // //  /users
       // {
       //   path: "/dashboard/allusers",
       //   element: (
@@ -68,16 +80,6 @@ const router = createBrowserRouter([
           </SellerRoute>
         ),
       },
-      // {
-      //   path: "/dashboard/payment/:id",
-      //   element: (
-      //     <AdminRoute>
-      //       <Payment></Payment>
-      //     </AdminRoute>
-      //   ),
-      //   loader: ({ params }) =>
-      //     fetch(`http://localhost:5000/bookings/${params.id}`),
-      // },
     ],
   },
 ]);

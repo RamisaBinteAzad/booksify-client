@@ -12,37 +12,36 @@ const AddProduct = () => {
     register,
     handleSubmit,
     formState: { errors },
-    } = useForm();
-    const imageHostKey = process.env.REACT_APP_imgbb_key;
-    //  console.log(imageHostKey);
-    const navigate = useNavigate();
+   
+  } = useForm();
+  //  const handleChange = (event) => {
+  //    const categoryName = event.target.options[event.target.selectedIndex].text;
+  //   //  return categoryName;
+  //    console.log(categoryName);
+
+  //  };
+
+  const imageHostKey = process.env.REACT_APP_imgbb_key;
+  //  console.log(imageHostKey);
+  const navigate = useNavigate();
   const { user } = useContext(AuthContext);
   const handleAddProduct = (data) => {
     console.log(data);
+
     const date = new Date();
     const postedDate = format(date, "PPpp");
     // console.log(postedDate);
     const yearOfPurchase = data.purchaseYear;
     //   const purchaseYear = format(yearOfPurchase, "yyy");
     const purchaseYear = yearOfPurchase.split("-")[0];
- 
+    const categoryName = data.category.split(":")[1];
+    //  console.log(categoryName);
+    const categoryId = data.category.split(":")[0];
+    //  console.log(categoryId);
 
-    // originalprice
-    // :
-    // "400"
-    // phoneNumber
-    // :
-    // "01521515852"
-    // productCondition
-    // :
-    // "Good"
-    // purchaseYear
-    // :
-    // "2022-09"
-    // resaleprice
-    // :
-    // "300"
-    // sellerName
+    //  function updateValue(e) {
+    //     console.log(Event.target.value);
+    //  }
 
     const image = data.image[0];
     console.log(image);
@@ -63,7 +62,9 @@ const AddProduct = () => {
         if (imgData.success) {
           // console.log(imgData.data.url);
           const product = {
-            category: data.category,
+            categoryId: categoryId,
+            categoryName: categoryName,
+
             description: data.description,
             yearsOfUse: data.durationUsingProduct,
             location: data.location,
@@ -75,12 +76,11 @@ const AddProduct = () => {
             sellerEmail: user?.email,
             phoneNumber: data.phoneNumber,
             purchaseYear: purchaseYear,
-            postedDate,
+            postedDate: postedDate,
             image: imgData.data.url,
           };
-            console.log("Product", product);
-            
-         
+          console.log("Product", product);
+
           fetch("http://localhost:5000/products", {
             method: "POST",
             headers: {
@@ -92,10 +92,9 @@ const AddProduct = () => {
             .then((res) => res.json())
             .then((result) => {
               console.log(result);
-              toast.success(`${data.name} is added successfully`);
+              toast.success(`${data.name} book is added successfully`);
               navigate("/dashboard/myproducts");
             });
-               
         }
       });
   };
@@ -104,7 +103,7 @@ const AddProduct = () => {
     queryFn: async () => {
       const res = await fetch("http://localhost:5000/category");
       const data = await res.json();
-      // console.log('data:',data)
+      console.log("data:", data);
       return data;
     },
   });
@@ -146,16 +145,19 @@ const AddProduct = () => {
               </label>
               {/* name gulo option e dekhabo jeta backend theke eseche */}
               <select
-                {...register("category", {
-                  required: "Category is Required",
-                })}
+                {...register("category")}
+                id="category"
+                name="category"
                 className="select input-bordered w-full text-gray-600 font-light "
               >
                 <option disabled selected>
                   Select Product Category
                 </option>
                 {categories.map((category) => (
-                  <option key={category._id} value={category.name}>
+                  <option
+                    key={category._id}
+                    value={`${category._id}:${category.name}`}
+                  >
                     {category.name}
                   </option>
                 ))}
@@ -280,9 +282,6 @@ const AddProduct = () => {
           </div>
 
           <div className="px-3 ">
-            {/* <form
-          // onSubmit={handleSubmit(handleAddDoctor)}
-          > */}
             <div className="grid grid-cols-1 mt-6">
               <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold mb-1">
                 Upload Product Photo
@@ -345,6 +344,9 @@ const AddProduct = () => {
                   </span>
                 </label>
                 <select
+                  id="#type1"
+                  name="type1"
+                  onChange="updateValue()"
                   {...register("location", {
                     required: "Location is Required",
                   })}
@@ -358,6 +360,8 @@ const AddProduct = () => {
                   <option>Cumilla</option>
                   <option>Faridpur</option>
                   <option>Bogura</option>
+                  <option> Gazipur</option>
+                  <option> Tangail</option>
                 </select>
                 {errors.location && (
                   <p className="text-red-500">{errors.location.message}</p>

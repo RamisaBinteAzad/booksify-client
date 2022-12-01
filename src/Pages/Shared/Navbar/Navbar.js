@@ -165,7 +165,8 @@ const Navbar = () => {
                 {user?.photoURL ? (
                   <img title={user?.displayName} src={user?.photoURL} alt="" />
                 ) : (
-                  <FaUser className="text-3xl  "></FaUser>
+                  // <FaUser className="text-3xl  "></FaUser>
+                    ""
                 )}
               </div>
             </label>
@@ -213,7 +214,8 @@ const Navbar = () => {
             {user?.photoURL ? (
               <img title={user?.displayName} src={user?.photoURL} alt="" />
             ) : (
-              <FaUser className="text-3xl  "></FaUser>
+              // <FaUser className="text-3xl  "></FaUser>
+                ""
             )}
           </div>
         </label>

@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
+import AddProduct from "../../Dashboard/AddProduct/AddProduct";
 import Loading from "../../Shared/Loading/Loading";
 import Category from "./Category";
 
@@ -16,7 +17,7 @@ const AllCategories = () => {
       queryFn: async () => {
         const res = await fetch("http://localhost:5000/category");
         const data = await res.json();
-        // console.log('data:',data)
+       
         return data;
       },
     });
@@ -40,6 +41,7 @@ const AllCategories = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 mt-16 mx-auto container lg:grid-cols-3 gap-6  " >
         {categories.map((category) => (
           <Category key={category._id} category={category}></Category>
+          
         ))}
       </div>
       
