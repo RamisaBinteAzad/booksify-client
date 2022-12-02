@@ -1,22 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import bannerImage from "../../assets/images/allBooks/categories.jpg";
+import BookingModal from "./BookingModal";
 import Product from "./Product";
 
 const ProductDetails = () => {
-  const products= useLoaderData();
-    console.log(products);
-    //  const {
-    //    categoryId,
-        
-    //    categoryName,
-       
-    //  } = products;
-
-
-  // const navigation = useNavigation();
-
-  // console.log(name);
+ 
+  const products = useLoaderData();
+    const [productData, setProductData] = useState(null);
+    
   return (
     <section>
       <div
@@ -35,10 +27,20 @@ const ProductDetails = () => {
       <div className="mx-auto container px-7 ">
         <div className="grid gap-9 grid-cols-1 px-3 lg:m-10 my-10 md:grid-cols-2 lg:grid-cols-2">
           {products.map((product) => (
-            <Product key={product._id} product={product}></Product>
+            <Product
+              key={product._id}
+              product={product}
+              setProductData={setProductData}
+            ></Product>
           ))}
         </div>
       </div>
+      {productData && (
+        <BookingModal
+          productData={productData}
+          setProductData={setProductData}
+        ></BookingModal>
+      )}
     </section>
   );
 };

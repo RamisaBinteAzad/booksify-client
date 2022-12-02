@@ -1,8 +1,8 @@
 import React from "react";
+import BookingModal from "./BookingModal";
 
-const Product = ({ product }) => {
+const Product = ({ product, setProductData }) => {
   const {
-    categoryId,
     _id,
     price,
     categoryName,
@@ -32,7 +32,7 @@ const Product = ({ product }) => {
         <div className="w-2/3 p-4">
           {/* <div className="flex items-center"> */}
           <h2
-            tabindex="0"
+            tabIndex="0"
             className="focus:outline-none text-md text-primary font-semibold"
           >
             {productName}
@@ -40,15 +40,15 @@ const Product = ({ product }) => {
 
           <p
             title={description}
-            tabindex="0"
-            class="focus:outline-none text-xs text-gray-600 mt-2"
+            tabIndex="0"
+            className="focus:outline-none text-xs text-gray-600 mt-2"
           >
             {description.slice(0, 95) + "..."}{" "}
           </p>
           <div className="flex mt-4">
             <div>
               <p
-                tabindex="0"
+                tabIndex="0"
                 className="focus:outline-none text-xs text-gray-600 px-2 bg-gray-200 py-1"
               >
                 {yearsOfUse} years used
@@ -56,7 +56,7 @@ const Product = ({ product }) => {
             </div>
             <div className="pl-2">
               <p
-                tabindex="0"
+                tabIndex="0"
                 className="focus:outline-none text-xs text-gray-600 px-2 bg-gray-200 py-1"
               >
                 Condition:{productCondition}
@@ -66,7 +66,7 @@ const Product = ({ product }) => {
           <div className="flex items-center justify-between py-4">
             <div>
               <h2
-                tabindex="0"
+                tabIndex="0"
                 className="focus:outline-none text-indigo-700 w-24  text-xs mt-2 font-semibold"
               >
                 {sellerName}
@@ -75,7 +75,7 @@ const Product = ({ product }) => {
                 </p>
               </h2>
               <p
-                tabindex="0"
+                tabIndex="0"
                 className="focus:outline-none text-xs text-gray-800"
               >
                 Location:{location}
@@ -83,7 +83,7 @@ const Product = ({ product }) => {
             </div>
 
             <h2
-              tabindex="0"
+              tabIndex="0"
               className="focus:outline-none text-indigo-700 w-28 text-xs font-semibold"
             >
               Posted On:{postedDate}
@@ -99,9 +99,13 @@ const Product = ({ product }) => {
                 {originalprice}
               </h1>
             </div>
-            <button className=" bg-primary  border-0 btn hover:bg-orange-600  text-white text-xs font-bold uppercase rounded">
+            <label
+              htmlFor="booking-modal"
+              className=" hover:bg-orange-600   border-0 btn bg-gradient-to-r from-blue-500 to-slate-600   text-white text-xs font-serif uppercase rounded"
+              onClick={() => setProductData(product)}
+            >
               Book Now
-            </button>
+            </label>
           </div>
         </div>
       </div>

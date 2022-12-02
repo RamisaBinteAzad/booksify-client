@@ -26,7 +26,7 @@ const AddProduct = () => {
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
   const handleAddProduct = (data) => {
-    console.log(data);
+    // console.log(data);
 
     const date = new Date();
     const postedDate = format(date, "PPpp");
@@ -44,7 +44,7 @@ const AddProduct = () => {
     //  }
 
     const image = data.image[0];
-    console.log(image);
+    // console.log(image);
     const formData = new FormData();
     formData.append("image", image);
     const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`;
@@ -79,7 +79,7 @@ const AddProduct = () => {
             postedDate: postedDate,
             image: imgData.data.url,
           };
-          console.log("Product", product);
+          // console.log("Product", product);
 
           fetch("http://localhost:5000/products", {
             method: "POST",
@@ -91,7 +91,7 @@ const AddProduct = () => {
           })
             .then((res) => res.json())
             .then((result) => {
-              console.log(result);
+              // console.log(result);
               toast.success(`${data.name} book is added successfully`);
               navigate("/dashboard/myproducts");
             });
@@ -103,7 +103,7 @@ const AddProduct = () => {
     queryFn: async () => {
       const res = await fetch("http://localhost:5000/category");
       const data = await res.json();
-      console.log("data:", data);
+      // console.log("data:", data);
       return data;
     },
   });

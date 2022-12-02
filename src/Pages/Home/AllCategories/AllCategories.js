@@ -6,12 +6,7 @@ import Category from "./Category";
 
 
 const AllCategories = () => {
-    // const [categories, setCategories] = useState([]);
-    //   useEffect(() => {
-    //     fetch("categories.json")
-    //       .then((res) => res.json())
-    //       .then((data) => setCategories(data));
-    //   });
+ 
     const { data: categories = [],isLoading } = useQuery({
       queryKey: ["categories"],
       queryFn: async () => {

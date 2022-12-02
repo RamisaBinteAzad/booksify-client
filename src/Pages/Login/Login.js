@@ -27,7 +27,7 @@ const Login = () => {
     googleSignIn()
       .then((result) => {
         const user = result.user;
-        console.log(user);
+        // console.log(user);
           
         toast.success("Login Successfully");
          navigate(from, { replace: true });
@@ -131,18 +131,7 @@ const Login = () => {
                       className="block w-full rounded-md border border-gray-300 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary py-1 px-1.5 text-gray-500"
                     />
                   </div>
-                  {/* <div className="form-control w-full max-w-xs mb-3">
-                      <label className="label">
-                        <label className="mb-2 block text-xs font-semibold">
-                         Select Which Account will you creat
-                        </label>
-                      </label>
-                      <select className="select select-bordered">
-                        <option selected>Buyer</option>
-                        <option>Seller</option>
-                      </select>
-                    </div> */}
-
+                 
                   <div className="mb-3 flex flex-wrap content-center">
                     <input
                       id="remember"
