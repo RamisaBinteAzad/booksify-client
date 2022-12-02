@@ -7,6 +7,7 @@ import AllBuyers from "../../Pages/Dashboard/AllBuyers/AllBuyers";
  
 import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
 import MyProducts from "../../Pages/Dashboard/MyProducts/MyProducts";
+import ErrorPage from "../../Pages/ErrorPage/ErrorPage";
 import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/Login/Login";
 import ProductDetails from "../../Pages/ProductDetails/ProductDetails";
@@ -49,7 +50,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/blogs",
-        element:<Blogs></Blogs>
+        element: <Blogs></Blogs>,
       },
     ],
   },
@@ -57,11 +58,7 @@ const router = createBrowserRouter([
   {
     path: "/dashboard",
 
-    element: (
-      
-        <DashboardLayout></DashboardLayout>
-      
-    ),
+    element: <DashboardLayout></DashboardLayout>,
     // errorElement: <DisplayError></DisplayError>,
     children: [
       {
@@ -98,5 +95,6 @@ const router = createBrowserRouter([
       },
     ],
   },
+  { path: "*", element: <ErrorPage></ErrorPage> },
 ]);
 export default router;
