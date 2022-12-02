@@ -245,7 +245,7 @@ const Navbar = () => {
             fill="blue"
           />
         </svg>
-        Dashboard
+         
       </label>
     </div>
   );

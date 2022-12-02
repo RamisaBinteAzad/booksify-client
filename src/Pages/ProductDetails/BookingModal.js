@@ -52,7 +52,7 @@ image,
           setProductData(null);
 
           toast.success(`${productName} booking confirmed successfully`);
-           navigate("/dashboard/myorders");
+           navigate("/dashboard");
            
         } else {
           setProductData(null);
@@ -122,6 +122,7 @@ image,
                 <input
                   name="phone"
                   type="text"
+                  required
                   placeholder="01*********"
                   className="input input-bordered w-full "
                 />
@@ -130,6 +131,7 @@ image,
               <select
                 name="meetingLocation"
                 className="select select-bordered w-full "
+                required
               >
                 <option disabled selected>
                   Select your Meeting location

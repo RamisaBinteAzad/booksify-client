@@ -1,15 +1,18 @@
 import { createBrowserRouter } from "react-router-dom";
-import DashboardLayout from "../../Layout/DashboardLayout";
+import DashboardLayout from "../../Layout/DasboardLayout";
 import Main from "../../Layout/Main";
+import Blogs from "../../Pages/Blogs/Blogs";
 import AddProduct from "../../Pages/Dashboard/AddProduct/AddProduct";
 import AllBuyers from "../../Pages/Dashboard/AllBuyers/AllBuyers";
-import Dashboard from "../../Pages/Dashboard/Dashboard/Dashboard";
+ 
 import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
 import MyProducts from "../../Pages/Dashboard/MyProducts/MyProducts";
 import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/Login/Login";
 import ProductDetails from "../../Pages/ProductDetails/ProductDetails";
 import SignUp from "../../Pages/SignUp/SignUp";
+import AdminRoute from "../AdminRoute/AdminRoute";
+import BuyerRoute from "../BuyerRoute/BuyerRoute";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import SellerRoute from "../SellerRoute/SellerRoute";
  
@@ -44,6 +47,10 @@ const router = createBrowserRouter([
         path: "/signup",
         element: <SignUp></SignUp>,
       },
+      {
+        path: "/blogs",
+        element:<Blogs></Blogs>
+      },
     ],
   },
 
@@ -51,26 +58,30 @@ const router = createBrowserRouter([
     path: "/dashboard",
 
     element: (
-      <PrivateRoute>
+      
         <DashboardLayout></DashboardLayout>
-      </PrivateRoute>
+      
     ),
     // errorElement: <DisplayError></DisplayError>,
     children: [
       {
-        path: "/dashboard/myorders",
-        element: <MyOrders></MyOrders>,
-      },
-      {
         path: "/dashboard",
         element: (
-          // <AdminRoute>
-            <AllBuyers></AllBuyers>
-          // </AdminRoute>
+          <BuyerRoute>
+            <MyOrders></MyOrders>
+          </BuyerRoute>
         ),
       },
       {
         path: "/dashboard",
+        element: (
+          <AdminRoute>
+            <AllBuyers></AllBuyers>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "/dashboard/addProduct",
         element: (
           <SellerRoute>
             <AddProduct></AddProduct>
@@ -78,7 +89,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/dashboard/myproducts",
+        path: "/dashboard/myProducts",
         element: (
           <SellerRoute>
             <MyProducts></MyProducts>
