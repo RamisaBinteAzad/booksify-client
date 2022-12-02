@@ -14,15 +14,10 @@ const AddProduct = () => {
     formState: { errors },
    
   } = useForm();
-  //  const handleChange = (event) => {
-  //    const categoryName = event.target.options[event.target.selectedIndex].text;
-  //   //  return categoryName;
-  //    console.log(categoryName);
-
-  //  };
+ 
 
   const imageHostKey = process.env.REACT_APP_imgbb_key;
-  //  console.log(imageHostKey);
+  
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
   const handleAddProduct = (data) => {
@@ -30,19 +25,14 @@ const AddProduct = () => {
 
     const date = new Date();
     const postedDate = format(date, "PPpp");
-    // console.log(postedDate);
+    
     const yearOfPurchase = data.purchaseYear;
-    //   const purchaseYear = format(yearOfPurchase, "yyy");
+    
     const purchaseYear = yearOfPurchase.split("-")[0];
     const categoryName = data.category.split(":")[1];
-    //  console.log(categoryName);
+   
     const categoryId = data.category.split(":")[0];
-    //  console.log(categoryId);
-
-    //  function updateValue(e) {
-    //     console.log(Event.target.value);
-    //  }
-
+     
     const image = data.image[0];
     // console.log(image);
     const formData = new FormData();

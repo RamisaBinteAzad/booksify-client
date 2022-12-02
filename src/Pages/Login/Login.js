@@ -14,12 +14,18 @@ const Login = () => {
        const { signIn } = useContext(AuthContext);
        // Error
        const [logInError, setLogInError] = useState("");
-       const [loginUserEmail, setLoginUserEmail] = useState("");
-       const [token] = useToken(loginUserEmail);
+  const [loginUserEmail, setLoginUserEmail] = useState("");
+  const [googleLoginUserEmail, setGoogleLoginUserEmail] = useState("");
+ 
+  const [token] = useToken(loginUserEmail);
+   const [googletoken] = useToken(googleLoginUserEmail);
        const location = useLocation();
   const navigate = useNavigate();
    const from = location.state?.from?.pathname || "/";
    if (token) {
+     navigate(from, { replace: true });
+  }
+   if (googletoken) {
      navigate(from, { replace: true });
    }
   const { googleSignIn } = useContext(AuthContext);
@@ -27,10 +33,17 @@ const Login = () => {
     googleSignIn()
       .then((result) => {
         const user = result.user;
-        // console.log(user);
-          
+        
+        // console.log(user.email);
+        if (user) {
+            setGoogleLoginUserEmail(user.email);
+        }
+         
         toast.success("Login Successfully");
-         navigate(from, { replace: true });
+      
+        //  setLoginUserEmail(user.email);
+        
+        //  navigate(from, { replace: true });
          
       })
       .catch((error) => console.error(error));

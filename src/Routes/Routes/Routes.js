@@ -2,7 +2,9 @@ import { createBrowserRouter } from "react-router-dom";
 import DashboardLayout from "../../Layout/DashboardLayout";
 import Main from "../../Layout/Main";
 import AddProduct from "../../Pages/Dashboard/AddProduct/AddProduct";
+import AllBuyers from "../../Pages/Dashboard/AllBuyers/AllBuyers";
 import Dashboard from "../../Pages/Dashboard/Dashboard/Dashboard";
+import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
 import MyProducts from "../../Pages/Dashboard/MyProducts/MyProducts";
 import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/Login/Login";
@@ -22,7 +24,6 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home></Home>,
       },
-    
 
       {
         path: "/category/:id",
@@ -56,14 +57,18 @@ const router = createBrowserRouter([
     ),
     // errorElement: <DisplayError></DisplayError>,
     children: [
-      // {
-      //   path: "/dashboard/allusers",
-      //   element: (
-      //     <AdminRoute>
-      //       <AllUsers></AllUsers>
-      //     </AdminRoute>
-      //   ),
-      // },
+      {
+        path: "/dashboard/myorders",
+        element: <MyOrders></MyOrders>,
+      },
+      {
+        path: "/dashboard",
+        element: (
+          // <AdminRoute>
+            <AllBuyers></AllBuyers>
+          // </AdminRoute>
+        ),
+      },
       {
         path: "/dashboard",
         element: (

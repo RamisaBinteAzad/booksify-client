@@ -18,20 +18,26 @@ const SignUp = () => {
   } = useForm();
    const { createUser, updateUser } = useContext(AuthContext);
    const [signUpError, setSignUpError] = useState("");
-   const [createdUserEmail, setCreatedUserEmail] = useState("");
+  const [createdUserEmail, setCreatedUserEmail] = useState("");
+  const [googleCreatedUserEmail, setGoogleCreatedUserEmail] = useState("");
    // user er creation jokhon puropuri sesh hoye jabe tokhon setCreatedUserEmail korbo
-   const [token] = useToken(createdUserEmail);
+  const [token] = useToken(createdUserEmail);
+  const [googleToken] = useToken(googleCreatedUserEmail);
    const navigate = useNavigate();
    if (token) {
      navigate("/");
-   }
+  }
+  if (googleToken) {
+    navigate("/");
+  }
   const { user, loading } = useContext(AuthContext);
   const { googleSignIn } = useContext(AuthContext);
   const handleGoogleSignIn = () => {
     googleSignIn()
       .then((result) => {
         const user = result.user;
-         console.log("user", user);
+        console.log("user", user);
+         setGoogleCreatedUserEmail(user.email);
        toast.success("Sign Up Successfully");
         const userInfo = {
           displayName: user.displayName,

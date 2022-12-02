@@ -54,7 +54,7 @@ const DashboardLayout = () => {
               </div>
 
               <div className="mt-8">
-                {isSeller && (
+                {isSeller ? (
                   <>
                     <>
                       <li>
@@ -75,6 +75,10 @@ const DashboardLayout = () => {
                       </li>
                     </>
                   </>
+                ) : (
+                  <li>
+                    <Link to="/dashboard">All Buyers</Link>
+                  </li>
                 )}
               </div>
             </div>

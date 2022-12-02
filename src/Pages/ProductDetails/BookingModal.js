@@ -1,17 +1,19 @@
 import React, { useContext } from "react";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 import Loading from "../Shared/Loading/Loading";
 
 const BookingModal = ({ productData, setProductData }) => {
   // console.log(productData);
   const { user, loading } = useContext(AuthContext);
+   const navigate = useNavigate();
    
   
    
   const {
     _id,
-
+image,
     productName,
 
     resaleprice,
@@ -30,6 +32,7 @@ const BookingModal = ({ productData, setProductData }) => {
       meetingLocation: meetingLocation,
       buyerName,
       productId: _id,
+      image,
       email,
       phone,
       resaleprice,
@@ -49,7 +52,8 @@ const BookingModal = ({ productData, setProductData }) => {
           setProductData(null);
 
           toast.success(`${productName} booking confirmed successfully`);
-          // refetch();
+           navigate("/dashboard/myorders");
+           
         } else {
           setProductData(null);
           toast.error(data.message);
