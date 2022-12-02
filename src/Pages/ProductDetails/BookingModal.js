@@ -7,13 +7,11 @@ import Loading from "../Shared/Loading/Loading";
 const BookingModal = ({ productData, setProductData }) => {
   // console.log(productData);
   const { user, loading } = useContext(AuthContext);
-   const navigate = useNavigate();
-   
-  
-   
+  const navigate = useNavigate();
+
   const {
     _id,
-image,
+    image,
     productName,
 
     resaleprice,
@@ -38,7 +36,7 @@ image,
       resaleprice,
     };
     // console.log(booking);
-    fetch("http://localhost:5000/bookings", {
+    fetch("https://booksify-server.vercel.app/bookings", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -52,8 +50,7 @@ image,
           setProductData(null);
 
           toast.success(`${productName} booking confirmed successfully`);
-           navigate("/dashboard");
-           
+          navigate("/dashboard");
         } else {
           setProductData(null);
           toast.error(data.message);

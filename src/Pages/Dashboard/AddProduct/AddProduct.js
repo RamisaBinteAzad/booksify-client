@@ -12,12 +12,10 @@ const AddProduct = () => {
     register,
     handleSubmit,
     formState: { errors },
-   
   } = useForm();
- 
 
   const imageHostKey = process.env.REACT_APP_imgbb_key;
-  
+
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
   const handleAddProduct = (data) => {
@@ -25,14 +23,14 @@ const AddProduct = () => {
 
     const date = new Date();
     const postedDate = format(date, "PPpp");
-    
+
     const yearOfPurchase = data.purchaseYear;
-    
+
     const purchaseYear = yearOfPurchase.split("-")[0];
     const categoryName = data.category.split(":")[1];
-   
+
     const categoryId = data.category.split(":")[0];
-     
+
     const image = data.image[0];
     // console.log(image);
     const formData = new FormData();
@@ -71,7 +69,7 @@ const AddProduct = () => {
           };
           // console.log("Product", product);
 
-          fetch("http://localhost:5000/products", {
+          fetch("https://booksify-server.vercel.app/products", {
             method: "POST",
             headers: {
               "content-type": "application/json",
@@ -95,7 +93,7 @@ const AddProduct = () => {
   } = useQuery({
     queryKey: ["categories"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/category");
+      const res = await fetch("https://booksify-server.vercel.app/category");
       const data = await res.json();
       // console.log("data:", data);
       return data;

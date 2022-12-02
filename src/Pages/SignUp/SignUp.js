@@ -16,16 +16,16 @@ const SignUp = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
-   const { createUser, updateUser } = useContext(AuthContext);
-   const [signUpError, setSignUpError] = useState("");
+  const { createUser, updateUser } = useContext(AuthContext);
+  const [signUpError, setSignUpError] = useState("");
   const [createdUserEmail, setCreatedUserEmail] = useState("");
   const [googleCreatedUserEmail, setGoogleCreatedUserEmail] = useState("");
-   // user er creation jokhon puropuri sesh hoye jabe tokhon setCreatedUserEmail korbo
+  // user er creation jokhon puropuri sesh hoye jabe tokhon setCreatedUserEmail korbo
   const [token] = useToken(createdUserEmail);
   const [googleToken] = useToken(googleCreatedUserEmail);
-   const navigate = useNavigate();
-   if (token) {
-     navigate("/");
+  const navigate = useNavigate();
+  if (token) {
+    navigate("/");
   }
   if (googleToken) {
     navigate("/");
@@ -37,26 +37,23 @@ const SignUp = () => {
       .then((result) => {
         const user = result.user;
         console.log("user", user);
-         setGoogleCreatedUserEmail(user.email);
-       toast.success("Sign Up Successfully");
+        setGoogleCreatedUserEmail(user.email);
+        toast.success("Sign Up Successfully");
         const userInfo = {
           displayName: user.displayName,
           photoURL: user.photoURL,
-          email:user.email,
+          email: user.email,
           role: "Buyer",
         };
         // console.log(userInfo);
         updateUser(userInfo)
           .then(() => {
-             
-              saveUser(
-                user.displayName,
-                userInfo.role,
-                user.photoURL,
-                user.email
-              );
-           
-              
+            saveUser(
+              user.displayName,
+              userInfo.role,
+              user.photoURL,
+              user.email
+            );
           })
           .catch((error) => console.log(error));
       })
@@ -66,8 +63,6 @@ const SignUp = () => {
       });
   };
 
- 
-
   const handleSignUp = (data) => {
     // console.log(data);
     setSignUpError("");
@@ -76,16 +71,15 @@ const SignUp = () => {
         const user = result.user;
         console.log(user);
         toast.success("Sign Up Successfully");
-      
+
         // console.log(user.email ,user.password);
-       
+
         const userInfo = {
           displayName: data.name,
           photoURL: data.photo,
 
           role: data.role,
         };
-          
 
         updateUser(userInfo)
           .then(() => {
@@ -101,50 +95,41 @@ const SignUp = () => {
   };
   const saveUser = (name, role, photo, email) => {
     const individualUser = { name, role, photo, email };
-      fetch("http://localhost:5000/users", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(individualUser),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
-          // getUserToken(email); 
+    fetch("https://booksify-server.vercel.app/users", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(individualUser),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        // getUserToken(email);
 
-          if (data.acknowledged) {
-              
-             setCreatedUserEmail(email);
-           
-          } else {
-         
+        if (data.acknowledged) {
+          setCreatedUserEmail(email);
+        } else {
           navigate("/");
-              
-          }
-        });
-       
-     
-       
-    
-  
+        }
+      });
   };
-    // const getUserToken = (email) => {
-    //   fetch(`http://localhost:5000/jwt?email=${email}`)
-    //     .then((res) => res.json())
-    //     .then((data) => {
-    //       console.log(data);
-    //       if (data.accessToken) {
-             
-    //         localStorage.setItem("accessToken", data.accessToken);
-    //         navigate("/");
-    //       }
-    //     });
-    // };
+  // const getUserToken = (email) => {
+  //   fetch(`https://booksify-server.vercel.app/jwt?email=${email}`)
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       console.log(data);
+  //       if (data.accessToken) {
 
-if (loading) {
-   return <Loading></Loading>;
-}
+  //         localStorage.setItem("accessToken", data.accessToken);
+  //         navigate("/");
+  //       }
+  //     });
+  // };
+
+  if (loading) {
+    return <Loading></Loading>;
+  }
   return (
     <div
       className="  flex justify-center items-center   "
@@ -252,12 +237,11 @@ if (loading) {
                       Url
                     </label>
                     <input
-                      {...register("photo" )}
+                      {...register("photo")}
                       type="text"
                       placeholder="Upload Profile Pic"
                       className="block w-full rounded-md border border-gray-300 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary py-1 px-1.5 text-gray-500"
                     />
-                    
                   </div>
                   <div className="form-control w-full max-w-xs mb-3">
                     <label className="label">

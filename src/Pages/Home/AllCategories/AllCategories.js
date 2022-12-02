@@ -4,22 +4,19 @@ import AddProduct from "../../Dashboard/AddProduct/AddProduct";
 import Loading from "../../Shared/Loading/Loading";
 import Category from "./Category";
 
-
 const AllCategories = () => {
- 
-    const { data: categories = [],isLoading } = useQuery({
-      queryKey: ["categories"],
-      queryFn: async () => {
-        const res = await fetch("http://localhost:5000/category");
-        const data = await res.json();
-       
-        return data;
-      },
-    });
+  const { data: categories = [], isLoading } = useQuery({
+    queryKey: ["categories"],
+    queryFn: async () => {
+      const res = await fetch("https://booksify-server.vercel.app/category");
+      const data = await res.json();
+
+      return data;
+    },
+  });
   if (isLoading) {
     return <Loading></Loading>;
   }
-
 
   return (
     <div className="mt-24 container-fluid   px-4">
@@ -33,13 +30,11 @@ const AllCategories = () => {
           Second Hand Products
         </p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 mt-16 mx-auto container lg:grid-cols-3 gap-6  " >
+      <div className="grid grid-cols-1 md:grid-cols-2 mt-16 mx-auto container lg:grid-cols-3 gap-6  ">
         {categories.map((category) => (
           <Category key={category._id} category={category}></Category>
-          
         ))}
       </div>
-      
     </div>
   );
 };
