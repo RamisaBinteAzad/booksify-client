@@ -16,7 +16,7 @@ const AdminRoute = ({ children }) => {
   }
 
     if (user && isAdmin) {
-      console.log(isAdmin);
+      // console.log(isAdmin);
     return children;
   }
 

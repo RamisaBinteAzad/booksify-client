@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider";
+import AllBuyers from "../AllBuyers/AllBuyers";
 
 const MyOrders = () => {
   const { user } = useContext(AuthContext);
@@ -101,6 +102,7 @@ const MyOrders = () => {
           </tbody>
         </table>
       </div>
+      {/* <AllBuyers key={bookings._id} bookings={bookings}></AllBuyers> */}
     </div>
   );
 };

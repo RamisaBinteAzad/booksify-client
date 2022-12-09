@@ -4,6 +4,7 @@ import Main from "../../Layout/Main";
 import Blogs from "../../Pages/Blogs/Blogs";
 import AddProduct from "../../Pages/Dashboard/AddProduct/AddProduct";
 import AllBuyers from "../../Pages/Dashboard/AllBuyers/AllBuyers";
+import AllSellers from "../../Pages/Dashboard/AllSellers/AllSellers";
 
 import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
 import MyProducts from "../../Pages/Dashboard/MyProducts/MyProducts";
@@ -60,7 +61,39 @@ const router = createBrowserRouter([
     // errorElement: <DisplayError></DisplayError>,
     children: [
       {
+        path: "/dashboard/",
+        element: (
+          <AdminRoute>
+            <AllBuyers></AllBuyers>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "/dashboard/allbuyers",
+        element: (
+          <AdminRoute>
+            <AllBuyers></AllBuyers>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "/dashboard/allsellers",
+        element: (
+          <AdminRoute>
+            <AllSellers></AllSellers>
+          </AdminRoute>
+        ),
+      },
+      {
         path: "/dashboard",
+        element: (
+          <BuyerRoute>
+            <MyOrders></MyOrders>
+          </BuyerRoute>
+        ),
+      },
+      {
+        path: "/dashboard/myorders",
         element: (
           <BuyerRoute>
             <MyOrders></MyOrders>
@@ -70,13 +103,14 @@ const router = createBrowserRouter([
       {
         path: "/dashboard",
         element: (
-          <AdminRoute>
-            <AllBuyers></AllBuyers>
-          </AdminRoute>
+          <SellerRoute>
+            <AddProduct></AddProduct>
+          </SellerRoute>
         ),
       },
+
       {
-        path: "/dashboard/addProduct",
+        path: "/dashboard/addproduct",
         element: (
           <SellerRoute>
             <AddProduct></AddProduct>
@@ -84,7 +118,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/dashboard/myProducts",
+        path: "/dashboard/myproducts",
         element: (
           <SellerRoute>
             <MyProducts></MyProducts>

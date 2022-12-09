@@ -104,14 +104,14 @@ const AddProduct = () => {
   }
 
   return (
-    <div className="bg-slate-100 text-center ">
+    <div className=" text-center ">
       <h2 className="text-4xl font-bold pt-9">
         <span className="text-primary">Add </span>Products
       </h2>
       <form onSubmit={handleSubmit(handleAddProduct)}>
-        <div className="  w-full  px-7 py-8 grid md:grid-cols-2 gap-5 ">
-          <div className="container mx-auto glass p-7 rounded-2xl">
-            <div className="form-control w-full  ">
+        <div className="lg:px-3 rounded-lg glass my-4  container mx-auto  lg:w-5/6    py-8 grid md:grid-cols-2 gap-5 ">
+          <div className="    rounded-2xl">
+            <div className="form-control w-full px-3 ">
               <label className="label">
                 {" "}
                 <span className="label-text font-bold">Product Title</span>
@@ -128,7 +128,7 @@ const AddProduct = () => {
                 <p className="text-red-500">{errors.name.message}</p>
               )}
             </div>
-            <div className="form-control w-full">
+            <div className="form-control w-full   p-3 ">
               <label className="label">
                 {" "}
                 <span className="label-text font-bold">
@@ -159,7 +159,7 @@ const AddProduct = () => {
               )}
             </div>
             <div className=" flex flex-wrap">
-              <div className="w-full  sm:w-1/2">
+              <div className="px-3  w-1/2">
                 <div className="mt-3">
                   <label className="label">
                     {" "}
@@ -178,7 +178,7 @@ const AddProduct = () => {
                   )}
                 </div>
               </div>
-              <div className="w-full px-3 sm:w-1/2">
+              <div className="px-3  w-1/2">
                 <div className="mt-3">
                   <label className="label">
                     {" "}
@@ -201,7 +201,7 @@ const AddProduct = () => {
                 </div>
               </div>
             </div>
-            <div className="form-control w-full   mb-3">
+            <div className="form-control lg:w-full md:w-full sm:w-1/2 px-3  mb-3">
               <label className="label">
                 {" "}
                 <span className="label-text font-bold mt-3">
@@ -210,7 +210,7 @@ const AddProduct = () => {
               </label>
 
               <div className="flex">
-                <div className="form-control">
+                <div className="form-control lg:w-full md:w-full sm:w-1/2 px-3">
                   <label htmlFor="Excellent" className="label cursor-pointer">
                     <input
                       {...register("productCondition", {
@@ -240,7 +240,7 @@ const AddProduct = () => {
                     <span className="label-text ml-2 mr-5">Good</span>
                   </label>
                 </div>
-                <div className="form-control">
+                <div className="form-control lg:w-full md:w-full sm:w-1/2 px-3">
                   <label htmlFor="Fair" className="label cursor-pointer">
                     <input
                       {...register("productCondition", {
@@ -274,7 +274,7 @@ const AddProduct = () => {
           </div>
 
           <div className="px-3 ">
-            <div className="grid grid-cols-1 mt-6">
+            <div className="grid grid-cols-1 ">
               <label className="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold mb-1">
                 Upload Product Photo
               </label>

@@ -64,7 +64,7 @@ const Login = () => {
          .then((result) => {
            const user = result.user;
                  toast.success("Login Successfully");
-           console.log(user);
+          //  console.log(user);
             setLoginUserEmail(data.email);
          
          })

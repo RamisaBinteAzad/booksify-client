@@ -45,7 +45,7 @@ const BookingModal = ({ productData, setProductData }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         if (data.acknowledged) {
           setProductData(null);
 
@@ -76,7 +76,7 @@ const BookingModal = ({ productData, setProductData }) => {
             <hr />
             <form onSubmit={handleBooking} className="grid  grid-cols-1 gap-3 ">
               <div>
-                <label className="label mt-3">
+                <label className="label mt-3 ">
                   {" "}
                   <span className="label-text font-bold text-primary">
                     Resale Price
@@ -99,7 +99,7 @@ const BookingModal = ({ productData, setProductData }) => {
                 defaultValue={user?.displayName}
                 disabled
                 placeholder="Your Name"
-                className="input input-bordered w-full "
+                className="input mt-3 input-bordered w-full "
               />
               <input
                 name="email"
@@ -112,7 +112,7 @@ const BookingModal = ({ productData, setProductData }) => {
               <div>
                 <label className="label">
                   {" "}
-                  <span className="label-text text-primary font-bold mt-3 w-full sm:w-1/2">
+                  <span className="label-text text-primary font-bold mt-1 w-full sm:w-1/2">
                     Phone Number
                   </span>
                 </label>
@@ -124,23 +124,28 @@ const BookingModal = ({ productData, setProductData }) => {
                   className="input input-bordered w-full "
                 />
               </div>
+              <div>
+                <label className="label ">
+                  {" "}
+                  <span className="label-text text-primary font-bold mt-1 w-full sm:w-1/2">
+                    Select your Meeting location
+                  </span>
+                </label>
+                <select
+                  name="meetingLocation"
+                  className="select select-bordered w-full "
+                  required
+                >
+                  <option value="Dhaka">Dhaka</option>
+                  <option value="Mymensingh">Mymensingh</option>
+                  <option value="Cumilla">Cumilla</option>
+                  <option value="Faridpur">Faridpur</option>
+                  <option value="Bogura">Bogura</option>
+                  <option value="Gazipur"> Gazipur</option>
+                  <option value="Tangail"> Tangail</option>
+                </select>
+              </div>
 
-              <select
-                name="meetingLocation"
-                className="select select-bordered w-full "
-                required
-              >
-                <option disabled selected>
-                  Select your Meeting location
-                </option>
-                <option>Dhaka</option>
-                <option>Mymensingh</option>
-                <option>Cumilla</option>
-                <option>Faridpur</option>
-                <option>Bogura</option>
-                <option> Gazipur</option>
-                <option> Tangail</option>
-              </select>
               <input
                 className="btn bg-gradient-to-r from-blue-500 to-slate-600   text-white  text-center border-0 w-full "
                 type="submit"

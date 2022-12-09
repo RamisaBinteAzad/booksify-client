@@ -28,7 +28,7 @@ const DasboardLayout = () => {
           type="checkbox"
           className="drawer-toggle"
         />
-        <div className="drawer-content">
+        <div className="drawer-content bg-slate-100">
           {/* <!-- Page content here --> */}
           <Outlet></Outlet>
         </div>
@@ -56,11 +56,11 @@ const DasboardLayout = () => {
                 <p className="w-full">{user?.displayName}</p>
               </div>
 
-              <div className="mt-8">
+              <div className="mt-8 ">
                 {isAdmin && (
                   <>
                     <li>
-                      <Link to="/dashboard">All Buyers</Link>
+                      <Link to="/dashboard/allbuyers">All Buyers</Link>
                     </li>
                     <li>
                       <Link to="/dashboard/allsellers">All Sellers</Link>
@@ -87,7 +87,7 @@ const DasboardLayout = () => {
                 {isBuyer && (
                   <>
                     <li>
-                      <Link to="/dashboard">All Orders</Link>
+                      <Link to="/dashboard/myorders">All Orders</Link>
                     </li>
                   </>
                 )}

@@ -16,6 +16,8 @@ const SignUp = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
+  
+  const imageHostKey = process.env.REACT_APP_imgbb_key;
   const { createUser, updateUser } = useContext(AuthContext);
   const [signUpError, setSignUpError] = useState("");
   const [createdUserEmail, setCreatedUserEmail] = useState("");
@@ -36,7 +38,7 @@ const SignUp = () => {
     googleSignIn()
       .then((result) => {
         const user = result.user;
-        console.log("user", user);
+        // console.log("user", user);
         setGoogleCreatedUserEmail(user.email);
         toast.success("Sign Up Successfully");
         const userInfo = {
@@ -66,27 +68,49 @@ const SignUp = () => {
   const handleSignUp = (data) => {
     // console.log(data);
     setSignUpError("");
+   
     createUser(data.email, data.password)
       .then((result) => {
         const user = result.user;
-        console.log(user);
+        // console.log(user);
         toast.success("Sign Up Successfully");
 
         // console.log(user.email ,user.password);
+        
+    const image = data.image[0];
+    // console.log(image);
+    const formData = new FormData();
+    formData.append("image", image);
+    const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`;
+        fetch(url, {
+          method: "POST",
+          body: formData,
+        })
+          // resaleprice
+          // :
+          // "300"
+          // sellerName
+          .then((res) => res.json())
+          .then((imgData) => {
+            if (imgData.success) {
+              const userInfo = {
+              displayName: data.name,
+              photoURL: imgData.data.url,
 
-        const userInfo = {
-          displayName: data.name,
-          photoURL: data.photo,
+              role: data.role,
+            };
+          updateUser(userInfo)
+            .then(() => {
+              saveUser(data.name, data.role, data.photo, data.email);
+              // console.log("ROle",saveUser);
+            })
+            .catch((error) => console.log(error));  }
+          });
+        
 
-          role: data.role,
-        };
+       
 
-        updateUser(userInfo)
-          .then(() => {
-            saveUser(data.name, data.role, data.photo, data.email);
-            // console.log("ROle",saveUser);
-          })
-          .catch((error) => console.log(error));
+        
       })
       .catch((error) => {
         //  console.log(error);
@@ -94,6 +118,7 @@ const SignUp = () => {
       });
   };
   const saveUser = (name, role, photo, email) => {
+   
     const individualUser = { name, role, photo, email };
     fetch("https://booksify-server.vercel.app/users", {
       method: "POST",
@@ -104,7 +129,7 @@ const SignUp = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         // getUserToken(email);
 
         if (data.acknowledged) {
@@ -232,16 +257,42 @@ const SignUp = () => {
                     )}
                   </div>
                   <div className="mb-3">
-                    <label className="flex mb-2   text-xs font-semibold">
-                      <FaImage className=" mr-2 text-primary"></FaImage> Photo
-                      Url
+                    <label className="uppercase flex mb-2   text-xs font-semibold">
+                      Upload Your Photo
                     </label>
-                    <input
-                      {...register("photo")}
-                      type="text"
-                      placeholder="Upload Profile Pic"
-                      className="block w-full rounded-md border border-gray-300 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary py-1 px-1.5 text-gray-500"
-                    />
+                    <div className="flex items-center justify-center w-full">
+                      <label className="flex flex-col border-4 border-dashed w-full h-32 hover:bg-gray-100 hover:border-primary-300 group">
+                        <div className="flex flex-col items-center justify-center pt-7">
+                          <svg
+                            className="w-10 h-10 text-primary group-hover:text-primary"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
+                              d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                            ></path>
+                          </svg>
+                          <p className="lowercase text-sm text-gray-400 group-hover:text-primary pt-1 tracking-wider">
+                            Select a photo
+                          </p>
+                        </div>
+                        <input
+                          type="file"
+                          {...register("image", {
+                            required: "Image is Required",
+                          })}
+                          className="hidden"
+                        />
+                      </label>
+                    </div>
+                    {errors.photo && (
+                      <p className="text-red-500">{errors.photo.message}</p>
+                    )}
                   </div>
                   <div className="form-control w-full max-w-xs mb-3">
                     <label className="label">

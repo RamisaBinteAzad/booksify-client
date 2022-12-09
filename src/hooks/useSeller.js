@@ -9,7 +9,7 @@ const useSeller = (email) => {
       fetch(`https://booksify-server.vercel.app/users/seller/${email}`)
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
+          // console.log(data);
           setIsSeller(data.isSeller);
           setIsSellerLoading(false);
         });

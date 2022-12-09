@@ -1,4 +1,5 @@
 import React from "react";
+import { FaCheckCircle, FaCheckSquare } from "react-icons/fa";
 import BookingModal from "./BookingModal";
 
 const Product = ({ product, setProductData }) => {
@@ -20,6 +21,7 @@ const Product = ({ product, setProductData }) => {
     purchaseYear,
     postedDate,
     image,
+    status
   } = product;
   return (
     <div className="py-6">
@@ -33,7 +35,7 @@ const Product = ({ product, setProductData }) => {
           {/* <div className="flex items-center"> */}
           <h2
             tabIndex="0"
-            className="focus:outline-none text-md text-primary font-semibold"
+            className="focus:outline-none text-xl text-primary font-semibold"
           >
             {productName}
           </h2>
@@ -70,9 +72,16 @@ const Product = ({ product, setProductData }) => {
                 className="focus:outline-none text-indigo-700 w-24  text-xs mt-2 font-semibold"
               >
                 {sellerName}
-                <p className="text-gray-700 focus:outline-none text-xs">
-                  Seller
-                </p>
+                <div className="flex items-center">
+                  <p className="text-gray-700 focus:outline-none text-xs mr-4">
+                    Seller
+                  </p>
+                  {status === "Verified" ? (
+                    <FaCheckCircle className=" text-success text-lg"></FaCheckCircle>
+                  ) : (
+                    ""
+                  )}
+                </div>
               </h2>
               <p
                 tabIndex="0"
