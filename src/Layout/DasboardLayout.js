@@ -87,7 +87,7 @@ const DasboardLayout = () => {
                 {isBuyer && (
                   <>
                     <li>
-                      <Link to="/dashboard/myorders">All Orders</Link>
+                      <Link to="/dashboard">All Orders</Link>
                     </li>
                   </>
                 )}
