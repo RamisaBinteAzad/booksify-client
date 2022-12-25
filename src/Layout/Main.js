@@ -6,7 +6,7 @@ import './Main.css'
 
 const Main = () => {
     return (
-      <div>
+      <div className="container mx-auto lg:px-5">
         <Navbar></Navbar>
         <Outlet></Outlet>
         <Footer></Footer>

@@ -84,14 +84,7 @@ const router = createBrowserRouter([
           </AdminRoute>
         ),
       },
-      {
-        path: "/dashboard",
-        element: (
-          <BuyerRoute>
-            <MyOrders></MyOrders>
-          </BuyerRoute>
-        ),
-      },
+      
       {
         path: "/dashboard/myorders",
         element: (

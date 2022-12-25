@@ -6,7 +6,7 @@ import Features from '../Features/Features';
 
 const Home = () => {
     return (
-      <div>
+      <div className=''>
         <Banner></Banner>
 
         <AllCategories></AllCategories>

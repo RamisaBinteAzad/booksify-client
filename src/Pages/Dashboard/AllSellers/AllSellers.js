@@ -6,13 +6,13 @@ import ConfirmationModal from "../../Shared/ConfirmationModal/ConfirmationModal"
 import Loading from "../../Shared/Loading/Loading";
 
 const AllSellers = () => {
-      const {  loading } = useContext(AuthContext);
+  const { loading } = useContext(AuthContext);
   const [deletingSeller, setDeletingSeller] = useState(null);
 
   const [sellers, setSellers] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/products", {})
+    fetch("https://booksify-server.vercel.app/products", {})
       .then((res) => {
         return res.json();
       })
@@ -29,7 +29,7 @@ const AllSellers = () => {
   const [buyers, setBuyers] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/buyers?role=${role}`)
+    fetch(`https://booksify-server.vercel.app/buyers?role=${role}`)
       .then((res) => {
         return res.json();
       })
@@ -38,7 +38,7 @@ const AllSellers = () => {
         setBuyers(data);
       });
   }, [role]);
-  // const url = `http://localhost:5000/buyers?role=${role}`;
+  // const url = `https://booksify-server.vercel.app/buyers?role=${role}`;
 
   // const {
   //   data: buyers,
@@ -56,7 +56,7 @@ const AllSellers = () => {
 
   const handleDeleteSeller = (seller) => {
     console.log(seller);
-    fetch(`http://localhost:5000/sellers/${seller.sellerEmail}`, {
+    fetch(`https://booksify-server.vercel.app/sellers/${seller.sellerEmail}`, {
       method: "DELETE",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
@@ -70,10 +70,10 @@ const AllSellers = () => {
       });
   };
   if (loading) {
-    return <Loading></Loading>;;
+    return <Loading></Loading>;
   }
   const handleStatusUpdate = (email) => {
-    fetch(`http://localhost:5000/sellers/${email}`, {
+    fetch(`https://booksify-server.vercel.app/sellers/${email}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
@@ -165,9 +165,6 @@ const AllSellers = () => {
                       {buyer.status ? buyer.status : "Verify"}
                     </label>
                   </td>
-                 
-
-                
                 </tr>
               ))}
           </tbody>

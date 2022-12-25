@@ -1,18 +1,18 @@
-import { useQuery } from '@tanstack/react-query';
-import React, { useContext, useState } from 'react';
-import { toast } from 'react-hot-toast';
-import { Link } from 'react-router-dom';
-import { AuthContext } from '../../../contexts/AuthProvider';
-import ConfirmationModal from '../../Shared/ConfirmationModal/ConfirmationModal';
+import { useQuery } from "@tanstack/react-query";
+import React, { useContext, useState } from "react";
+import { toast } from "react-hot-toast";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../../../contexts/AuthProvider";
+import ConfirmationModal from "../../Shared/ConfirmationModal/ConfirmationModal";
 import Loading from "../../Shared/Loading/Loading";
 
 const AllBuyers = () => {
   const [deletingBuyer, setDeletingBuyer] = useState(null);
-   const closeModal = () => {
-     setDeletingBuyer(null);
-   };
-  const role="Buyer"
-  const url = `http://localhost:5000/buyers?role=${role}`;
+  const closeModal = () => {
+    setDeletingBuyer(null);
+  };
+  const role = "Buyer";
+  const url = `https://booksify-server.vercel.app/buyers?role=${role}`;
 
   const {
     data: buyers,
@@ -27,25 +27,24 @@ const AllBuyers = () => {
       return data;
     },
   });
-    
-    const handleDeleteBuyer = (buyer) => {
-      console.log(buyer);
-      fetch(`http://localhost:5000/buyers/${buyer._id}`, {
-        method: "DELETE",
-        headers: {
-          authorization: `bearer ${localStorage.getItem("accessToken")}`,
-        },
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.deletedCount > 0) {
-            refetch();
-            toast.success(`Buyer ${buyer.name} deleted successfully`);
-          }
-        });
+
+  const handleDeleteBuyer = (buyer) => {
+    console.log(buyer);
+    fetch(`https://booksify-server.vercel.app/buyers/${buyer._id}`, {
+      method: "DELETE",
+      headers: {
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.deletedCount > 0) {
+          refetch();
+          toast.success(`Buyer ${buyer.name} deleted successfully`);
+        }
+      });
   };
-  
-  
+
   if (isLoading) {
     return <Loading></Loading>;
   }

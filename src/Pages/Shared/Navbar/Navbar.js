@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { FaSignInAlt, FaUser } from "react-icons/fa";
+import { FaDownload, FaSignInAlt, FaUser } from "react-icons/fa";
 
 import { Link } from "react-router-dom";
 import logo from "../../../assets/icons/logo2 (4).png";
@@ -124,7 +124,9 @@ const Navbar = () => {
               </li>
               <li className=" bg-white">
                 <Link>Medical</Link>
+               
               </li>
+              
             </ul>
           </li>
           <li>
